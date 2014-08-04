@@ -29,10 +29,6 @@ void nist5_hash(const char* input, char* output)
     sph_groestl512 (&ctx_groestl, hash, 64);
     sph_groestl512_close(&ctx_groestl, hash);
 
-    sph_skein512_init(&ctx_skein);
-    sph_skein512 (&ctx_skein, hash, 64);
-    sph_skein512_close (&ctx_skein, hash);
-
     sph_jh512_init(&ctx_jh);
     sph_jh512 (&ctx_jh, hash, 64);
     sph_jh512_close(&ctx_jh, hash);
@@ -40,8 +36,11 @@ void nist5_hash(const char* input, char* output)
     sph_keccak512_init(&ctx_keccak);
     sph_keccak512 (&ctx_keccak, hash, 64);
     sph_keccak512_close(&ctx_keccak, hash);
+
+    sph_skein512_init(&ctx_skein);
+    sph_skein512 (&ctx_skein, hash, 64);
+    sph_skein512_close (&ctx_skein, hash);
 	
-    memcpy(output, hash, 32);
-	
+    memcpy(output, hash, 32);	
 }
 
